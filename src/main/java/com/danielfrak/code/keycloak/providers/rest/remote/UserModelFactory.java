@@ -20,7 +20,8 @@ public class UserModelFactory {
 
     private final KeycloakSession session;
     private final ComponentModel model;
-
+    private final boolean caseInsensitive;
+  
     /**
      * String format:
      * legacyRole:newRole
@@ -37,6 +38,7 @@ public class UserModelFactory {
         this.model = model;
         this.roleMap = legacyMap(model, ROLE_MAP_PROPERTY);
         this.groupMap = legacyMap(model, GROUP_MAP_PROPERTY);
+        this.caseInsensitive = model.get(CASE_INSENSITIVE_USERNAME_PROPERTY, false);
     }
 
     /**
@@ -105,10 +107,12 @@ public class UserModelFactory {
     }
 
     private void validateUsernamesEqual(LegacyUser legacyUser, UserModel userModel) {
-        if (!userModel.getUsername().equals(legacyUser.getUsername())) {
+      String username = caseInsensitive ? userModel.getUsername().toLowerCase() : userModel.getUsername();
+      String legacyUsername = caseInsensitive ? legacyUser.getUsername().toLowerCase() : legacyUser.getUsername();
+        if (!username.equals(legacyUsername)) {
             throw new IllegalStateException(String.format("Local and remote users differ: [%s != %s]",
-                    userModel.getUsername(),
-                    legacyUser.getUsername()));
+                    username,
+                    legacyUsername));
         }
     }
 
