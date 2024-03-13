@@ -286,3 +286,9 @@ automatically map legacy groups to Keycloak groups, by specifying the mapping in
 
 This switch can be toggled to decide whether groups which are not defined in the legacy group conversion map should be
 migrated anyway or simply ignored.
+
+### Case insensitive username comparison
+
+This switch can be toggled to decide if the username comparison between local and remote is done in a case insensitive
+fashion. Keycloak automatically lower cases usernames and a check in the user federation plugin can yield a mismatch,
+even if the user entered the name properly.

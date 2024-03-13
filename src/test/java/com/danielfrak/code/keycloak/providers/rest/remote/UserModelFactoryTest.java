@@ -98,6 +98,39 @@ class UserModelFactoryTest {
     }
 
     @Test
+    void throwsExceptionIfLegacyAndKeycloakUsernamesNotEqualCaseSensitive() {
+        final UserProvider userProvider = mock(UserProvider.class);
+        final RealmModel realm = mock(RealmModel.class);
+        final String username = "user";
+
+        when(session.users())
+                .thenReturn(userProvider);
+        when(userProvider.addUser(realm, username))
+                .thenReturn(new TestUserModel("User"));
+
+        LegacyUser legacyUser = createLegacyUser(username);
+        assertThrows(IllegalStateException.class, () -> userModelFactory.create(legacyUser, realm));
+    }
+
+    @Test
+    void createsUserIfLegacyAndKeycloakUsernamesEqualCaseInsensitive() {
+        config.putSingle(CASE_INSENSITIVE_USERNAME_PROPERTY, "true");
+        final UserProvider userProvider = mock(UserProvider.class);
+        final RealmModel realm = mock(RealmModel.class);
+        final String username = "user";
+
+        when(session.users())
+                .thenReturn(userProvider);
+        when(userProvider.addUser(realm, username))
+                .thenReturn(new TestUserModel("User"));
+
+        LegacyUser legacyUser = createLegacyUser(username);
+        var result = userModelFactory.create(legacyUser, realm);
+
+        assertNotNull(result);
+    }
+
+    @Test
     void migratesBasicAttributes() {
         final UserProvider userProvider = mock(UserProvider.class);
         final RealmModel realm = mock(RealmModel.class);
