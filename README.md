@@ -1,5 +1,24 @@
 # Keycloak user migration plugin
 
+<!-- phasetwo:banner:start - managed by p2-inc/shared-github-actions, edit there -->
+[![license](https://img.shields.io/badge/license-MIT-blue)](LICENSE) [![docs](https://img.shields.io/badge/docs-phasetwo.io-blue)](https://phasetwo.io/docs/user-migration/)
+
+📚 [Documentation](https://phasetwo.io/docs/user-migration/) • 🚀 [Hosted Keycloak](https://dash.phasetwo.io/?utm_source=github&utm_medium=readme&utm_campaign=keycloak-user-migration) • 🤖 [Keycloak Skills](https://github.com/p2-inc/keycloak-skills) • 💬 [Support](mailto:support@phasetwo.io)
+
+> [!TIP]
+> **Run this in our cloud, no setup needed.** Phase Two hosts Keycloak with this extension and the rest of ours built in. [Try it free with your own cluster →](https://dash.phasetwo.io/?utm_source=github&utm_medium=readme&utm_campaign=keycloak-user-migration)
+>
+> **Using a coding agent?** Add the Phase Two Keycloak skills ([launch post](https://phasetwo.io/blog/keycloak-skills-mcp-launch)) to Claude Code, Cursor or Codex so your agent can set up passwordless login, SSO, organizations and clusters for you:
+>
+> ```sh
+> # Install the skills (connects to our hosted MCP server)
+> claude plugin marketplace add p2-inc/keycloak-skills
+> claude plugin install phasetwo@keycloak-skills
+> # Or connect to the MCP server directly
+> claude mcp add --transport http keycloak https://mcp.phasetwo.io/mcp
+> ```
+<!-- phasetwo:banner:end -->
+
 ![Code Soapbox logo](readme-images/logo.png)
 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=keycloak-user-migration&metric=alert_status)](https://sonarcloud.io/dashboard?id=keycloak-user-migration)
